@@ -1,232 +1,98 @@
-:root{
-  --bg:#ffffff;
-  --text:#1f2937;
-  --muted:#6b7280;
-  --line:#e5e7eb;
-  --card:#ffffff;
-  --link:#0a66c2;
-  --shadow:0 8px 24px rgba(0,0,0,.06);
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV | Muhammad Fawad</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <nav class="nav">
+        <a href="index.html">Homepage</a>
+        <a href="publications.html">Publications</a>
+        <a href="research.html">Research</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="cv.html">CV</a>
+      </nav>
+      <button class="toggle-btn" id="themeToggle">🌙 Dark</button>
+    </div>
+  </div>
 
-body.dark{
-  --bg:#0f172a;
-  --text:#e5e7eb;
-  --muted:#94a3b8;
-  --line:#243041;
-  --card:#111827;
-  --link:#7dd3fc;
-  --shadow:0 8px 24px rgba(0,0,0,.25);
-}
+  <div class="wrap">
+    <aside class="sidebar">
+      <img src="PR.jpg" alt="Muhammad Fawad" class="avatar">
+      <h2 class="name">Muhammad Fawad</h2>
+      <p class="role">Postdoctoral Research Fellow</p>
+    </aside>
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+    <main class="content">
+      <h1>CV</h1>
 
-body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.7;
-}
+      <p><a class="download" href="Muhammad_Fawad_CV.pdf" target="_blank">Download CV (PDF)</a></p>
 
-a{
-  color:var(--link);
-  text-decoration:none;
-}
+      <h2>Education</h2>
+      <div class="card">
+        <ul>
+          <li><strong>Ph.D. in Mathematical Statistics</strong>, Central China Normal University, Wuhan, China, 2016–2019</li>
+          <li><strong>M.S./M.Phil in Statistics</strong>, International Islamic University Islamabad, Pakistan, 2012–2015</li>
+          <li><strong>M.Sc. in Statistics</strong>, University of Malakand, Chakdara, Pakistan, 2009–2011</li>
+          <li><strong>B.Sc. in Statistics, Mathematics, Physics</strong>, University of Malakand, Chakdara, Pakistan, 2007–2009</li>
+        </ul>
+      </div>
 
-a:hover{
-  text-decoration:underline;
-}
+      <h2>Awards, Scholarships, and Distinctions</h2>
+      <div class="card">
+        <ul>
+          <li>Excellent International Student Award, Central China Normal University, 2019</li>
+          <li>Certificate of Honor, China Scholarship Council at Peking University, 2019</li>
+          <li>Academic Diligence Award, Central China Normal University, 2017</li>
+          <li>Chinese Government Scholarship, 2016</li>
+          <li>Laptop Award, Government of Pakistan, 2014</li>
+          <li>Chancellor Medal, University of Malakand, 2012</li>
+          <li>Merit Certificate, University of Malakand, 2012</li>
+          <li>Certificate of Appreciation, University of Malakand, 2011</li>
+        </ul>
+      </div>
 
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:var(--bg);
-  border-bottom:1px solid var(--line);
-}
+      <h2>Professional Service</h2>
+      <div class="card">
+        <ul>
+          <li>Editorial Board Member, <i>Scientific Reports</i>, April 2024 – Present</li>
+          <li>Academic Editor, <i>PLOS ONE</i>, June 2024 – April 2025</li>
+          <li>Peer reviewer for journals across healthcare, environmental science, AI, engineering, and statistics.</li>
+        </ul>
+      </div>
 
-.topbar-inner{
-  max-width:1180px;
-  margin:0 auto;
-  padding:14px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-}
+      <h2>Skills</h2>
+      <div class="card two-col">
+        <div>
+          <h3>Software & Programming</h3>
+          <ul>
+            <li>Python</li>
+            <li>R</li>
+            <li>SAS</li>
+            <li>SPSS</li>
+            <li>Minitab</li>
+            <li>LaTeX</li>
+            <li>Microsoft Office</li>
+          </ul>
+        </div>
 
-.nav{
-  display:flex;
-  flex-wrap:wrap;
-  gap:24px;
-}
+        <div>
+          <h3>Languages</h3>
+          <ul>
+            <li>English (Fluent)</li>
+            <li>Chinese (Basic)</li>
+            <li>Urdu (Native)</li>
+            <li>Pashto (Native)</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
 
-.nav a{
-  color:var(--text);
-  font-weight:700;
-}
-
-.toggle-btn{
-  border:1px solid var(--line);
-  background:var(--card);
-  color:var(--text);
-  border-radius:999px;
-  padding:8px 14px;
-  cursor:pointer;
-  font-weight:700;
-}
-
-.wrap{
-  max-width:1180px;
-  margin:36px auto 60px;
-  padding:0 20px;
-  display:grid;
-  grid-template-columns:280px minmax(0,1fr);
-  gap:52px;
-}
-
-.sidebar{
-  align-self:start;
-  position:sticky;
-  top:86px;
-}
-
-.avatar{
-  width:170px;
-  height:170px;
-  object-fit:cover;
-  border-radius:50%;
-  display:block;
-  margin:0 auto 18px;
-  border:4px solid #f3f4f6;
-  box-shadow:var(--shadow);
-}
-
-body.dark .avatar{
-  border-color:#1f2937;
-}
-
-.name{
-  font-size:30px;
-  line-height:1.2;
-  margin:0 0 8px;
-}
-
-.role{
-  margin:0 0 18px;
-  color:var(--muted);
-  font-size:17px;
-}
-
-.side-list{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-
-.side-item{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-size:15px;
-}
-
-.icon-svg{
-  width:20px;
-  height:20px;
-  display:inline-block;
-  flex:0 0 20px;
-}
-
-.badge{
-  width:22px;
-  height:22px;
-  min-width:22px;
-  border-radius:50%;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-size:11px;
-  font-weight:700;
-  color:#fff;
-}
-
-.badge-pin{background:#6b7280}
-.badge-tu{background:#7c3aed}
-
-.content h1{
-  font-size:42px;
-  line-height:1.15;
-  margin:4px 0 18px;
-}
-
-.content h2{
-  font-size:30px;
-  margin:38px 0 10px;
-}
-
-.content h3{
-  font-size:22px;
-  margin:22px 0 10px;
-}
-
-.lead{
-  font-size:18px;
-}
-
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:20px 22px;
-  box-shadow:var(--shadow);
-  margin:14px 0;
-}
-
-.pub-list{
-  padding-left:22px;
-}
-
-.pub-list li{
-  margin:14px 0;
-}
-
-.small-note{
-  color:var(--muted);
-  font-size:14px;
-}
-
-.download{
-  display:inline-block;
-  padding:10px 16px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:var(--card);
-  font-weight:700;
-}
-
-.two-col{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:22px;
-}
-
-@media (max-width:900px){
-  .wrap{
-    grid-template-columns:1fr;
-    gap:24px;
-  }
-
-  .sidebar{
-    position:static;
-  }
-
-  .content h1{
-    font-size:34px;
-  }
-
-  .two-col{
-    grid-template-columns:1fr;
-  }
-}
+  <script src="script.js"></script>
+</body>
+</html>
