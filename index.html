@@ -1,111 +1,706 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Muhammad Fawad</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#2f3437;
+      --muted:#6b7280;
+      --line:#e5e7eb;
+      --card:#ffffff;
+      --accent:#1f7a8c;
+      --accent-soft:#e8f4f7;
+      --link:#1d70b8;
+      --shadow:0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    body.dark{
+      --bg:#0f172a;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --line:#243041;
+      --card:#111827;
+      --accent:#7dd3fc;
+      --accent-soft:#0b2230;
+      --link:#7dd3fc;
+      --shadow:0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.7;
+    }
+
+    a{color:var(--link); text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:var(--bg);
+      border-bottom:1px solid var(--line);
+    }
+
+    .topbar-inner{
+      max-width:1180px;
+      margin:0 auto;
+      padding:14px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:24px;
+      align-items:center;
+    }
+
+    .nav a{
+      color:var(--text);
+      font-size:16px;
+      font-weight:600;
+    }
+
+    .toggle-btn{
+      border:1px solid var(--line);
+      background:var(--card);
+      color:var(--text);
+      border-radius:999px;
+      padding:8px 14px;
+      cursor:pointer;
+      font-weight:600;
+    }
+
+    .wrap{
+      max-width:1180px;
+      margin:36px auto;
+      padding:0 20px 60px;
+      display:grid;
+      grid-template-columns:280px minmax(0, 1fr);
+      gap:56px;
+    }
+
+    .sidebar{
+      align-self:start;
+      position:sticky;
+      top:86px;
+    }
+
+    .avatar{
+      width:170px;
+      height:170px;
+      object-fit:cover;
+      border-radius:50%;
+      display:block;
+      margin:0 auto 18px;
+      border:4px solid #f3f4f6;
+      box-shadow:var(--shadow);
+    }
+
+    body.dark .avatar{
+      border-color:#1f2937;
+    }
+
+    .name{
+      font-size:30px;
+      line-height:1.2;
+      margin:0 0 8px;
+      text-align:left;
+    }
+
+    .role{
+      color:var(--muted);
+      margin:0 0 18px;
+      font-size:17px;
+    }
+
+    .side-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .side-item{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--text);
+      font-size:15px;
+    }
+
+    .icon{
+      width:22px;
+      height:22px;
+      min-width:22px;
+      border-radius:50%;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:11px;
+      font-weight:700;
+      color:#fff;
+    }
+
+    .icon.pin{background:#6b7280;}
+    .icon.tu{background:#7c3aed;}
+    .icon.mail{background:#ef4444;}
+    .icon.gs{background:#1d4ed8;}
+    .icon.orcid{background:#84cc16;}
+    .icon.gh{background:#111827;}
+    .icon.in{background:#0a66c2;}
+
+    body.dark .icon.gh{background:#374151;}
+
+    .content h1{
+      font-size:44px;
+      line-height:1.15;
+      margin:6px 0 20px;
+    }
+
+    .content h2{
+      font-size:32px;
+      margin:42px 0 10px;
+      padding-top:12px;
+      border-top:1px solid var(--line);
+    }
+
+    .content h3{
+      font-size:22px;
+      margin:24px 0 10px;
+    }
+
+    .lead{
+      font-size:18px;
+      color:var(--text);
+      margin-bottom:16px;
+    }
+
+    .muted{color:var(--muted);}
+
+    ul{padding-left:24px;}
+    li{margin:8px 0;}
+
+    .pub-list li{
+      margin:14px 0;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:20px 22px;
+      box-shadow:var(--shadow);
+      margin:14px 0;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+
+    .top-link{
+      margin-left:10px;
+      font-size:14px;
+      white-space:nowrap;
+    }
+
+    .section-note{
+      color:var(--muted);
+      font-size:15px;
+      margin-top:2px;
+    }
+
+    @media (max-width: 900px){
+      .wrap{
+        grid-template-columns:1fr;
+        gap:24px;
+      }
+      .sidebar{
+        position:static;
+      }
+      .name,.role{
+        text-align:center;
+      }
+      .content h1{
+        font-size:34px;
+      }
+      .two-col{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
 </head>
-<body style="margin:0; font-family: Arial, sans-serif; color:#333; background:#fff;">
-
-  <div style="border-bottom:1px solid #ddd; padding:15px 40px; background:#fff;">
-    <a href="#" style="margin-right:25px; text-decoration:none; color:#333; font-weight:bold;">Homepage</a>
-    <a href="#" style="margin-right:25px; text-decoration:none; color:#333;">Publications</a>
-    <a href="#" style="margin-right:25px; text-decoration:none; color:#333;">Research</a>
-    <a href="#" style="margin-right:25px; text-decoration:none; color:#333;">Teaching</a>
-    <a href="#" style="margin-right:25px; text-decoration:none; color:#333;">CV</a>
-  </div>
-
-  <div style="display:flex; max-width:1100px; margin:40px auto; gap:50px; padding:0 20px;">
-
-    <div style="width:260px;">
-      <img src="PR.jpg" alt="Muhammad Fawad" style="width:160px; height:160px; object-fit:cover; border-radius:50%; display:block; margin:0 auto 20px auto;">
-
-      <h2 style="font-size:24px; margin-bottom:8px;">Muhammad Fawad</h2>
-      <p style="margin-top:0; color:#666;">Postdoctoral Research Fellow</p>
-
-      <p style="margin:8px 0;">📍 Tampere, Finland</p>
-      <p style="margin:8px 0;">🏛 Tampere University</p>
-      <p style="margin:8px 0;">✉ your.email@example.com</p>
-      <p style="margin:8px 0;"><a href="https://scholar.google.com/citations?user=_0g4vREAAAAJ&hl=en" style="text-decoration:none; color:#333;">Google Scholar</a></p>
-      <p style="margin:8px 0;"><a href="https://orcid.org/0000-0001-8921-4248" style="text-decoration:none; color:#333;">ORCID</a></p>
-      <p style="margin:8px 0;"><a href="https://github.com/Iam-MFawad" style="text-decoration:none; color:#333;">GitHub</a></p>
-      <p style="margin:8px 0;"><a href="https://linkedin.com/in/muhammad-fawad-79a3655b" style="text-decoration:none; color:#333;">LinkedIn</a></p>
-    </div>
-
-    <div style="flex:1;">
-      <h1 style="margin-top:0;">Hello! I’m Muhammad Fawad</h1>
-
-      <p>
-        I am a postdoctoral researcher working in mathematical statistics, machine learning, and health data science.
-        My current research focuses on large-scale healthcare data, including cardiometabolic disease, cancer, and public health outcomes.
-      </p>
-
-      <p>
-        I am currently a Postdoctoral Research Fellow at Tampere University, Finland. Previously, I worked at Zhejiang University
-        and Zhengzhou University, China, where I contributed to research in UK Biobank, healthcare data science, infectious disease epidemiology,
-        and predictive modeling.
-      </p>
-
-      <p>
-        I earned my Ph.D. in Mathematical Statistics from Central China Normal University, China.
-      </p>
-
-      <h2 style="margin-top:35px;">Research Interests</h2>
-      <ul style="line-height:1.8;">
-        <li>Health data science and healthcare analytics</li>
-        <li>Machine learning in medicine</li>
-        <li>Cardiometabolic disease and cancer research</li>
-        <li>Infectious disease epidemiology</li>
-        <li>Statistical modeling of complex data</li>
-      </ul>
-
-      <h2 style="margin-top:35px;">Selected Publications</h2>
-      <ul style="line-height:1.8;">
-        <li>
-          Naeem, S., Wang, F., Mubarak, R., Shen, H., Li, X., Mommers, I., Hussain, S. R., Malik, S. S., Yu, C., Hak, E., Xu, X., <strong>Fawad, M. ✉</strong>, Mubarik, S. (2025).
-          Mapping the global distribution, risk factors, and temporal trends of COPD incidence and mortality (1990–2021).
-          <i>BMC Medicine</i>. <a href="#">Link</a>
-        </li>
-
-        <li>
-          Yang, B., Podda, M., Zhang, Z., Pan, X., Fan, B., Yang, S., Islam, M. S., <strong>Fawad, M.</strong>, Ma, J., Jiao, S., Guan, X., Xi, Y., Wang, X. (2024).
-          Clinicopathological and genomic characterization of intestinal adenosquamous carcinoma.
-          <i>British Journal of Surgery</i>. <a href="#">Link</a>
-        </li>
-
-        <li>
-          Zhang, Y., Tao, Q., Cheng, Y., <strong>Fawad, M.</strong>, Liang, Z., Xu, X. (2024).
-          Gestational diabetes mellitus, body mass index, and cardiometabolic multimorbidity.
-          <i>Annals of Epidemiology</i>. <a href="#">Link</a>
-        </li>
-
-        <li>
-          <strong>Fawad, M.</strong>, Ullah, S., Xu, X. (2024).
-          Climate-Responsive Telemedicine: Innovative Strategy for Enhancing Healthcare in the Face of Climate Change.
-          <i>Journal of Global Health</i>. <a href="#">Link</a>
-        </li>
-
-        <li>
-          Ding, H., <strong>Fawad, M. ✉</strong>, Xu, X., Hu, B. (2022).
-          A Framework for Identification and Classification of Liver Diseases based on Machine Learning Algorithms.
-          <i>Frontiers in Oncology</i>. <a href="#">Link</a>
-        </li>
-      </ul>
-
-      <h2 style="margin-top:35px;">News</h2>
-      <ul style="line-height:1.8;">
-        <li>Currently working on health data science and machine learning applications in medicine.</li>
-        <li>Postdoctoral Research Fellow at Tampere University, Finland.</li>
-        <li>Editorial Board Member, <i>Scientific Reports</i>.</li>
-      </ul>
-
-      <h2 style="margin-top:35px;">For more info</h2>
-      <p>For more information, feel free to email me.</p>
-      <p>
-        <strong>Email:</strong><br>
-        your.email@example.com
-      </p>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <nav class="nav">
+        <a href="#home">Homepage</a>
+        <a href="#publications">Publications</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#cv">CV</a>
+      </nav>
+      <button class="toggle-btn" id="themeToggle">🌙 Dark</button>
     </div>
   </div>
+
+  <div class="wrap">
+    <aside class="sidebar">
+      <img src="PR.jpg" alt="Muhammad Fawad" class="avatar">
+
+      <h2 class="name">Muhammad Fawad</h2>
+      <p class="role">Postdoctoral Research Fellow</p>
+
+      <div class="side-list">
+        <div class="side-item">
+          <span class="icon pin">📍</span>
+          <span>Tampere, Finland</span>
+        </div>
+
+        <div class="side-item">
+          <span class="icon tu">TU</span>
+          <a href="https://www.tuni.fi/en" target="_blank">Tampere University</a>
+        </div>
+
+        <div class="side-item">
+          <span class="icon gs">GS</span>
+          <a href="https://scholar.google.com/citations?user=_0g4vREAAAAJ&hl=en" target="_blank">Google Scholar</a>
+        </div>
+
+        <div class="side-item">
+          <span class="icon orcid">iD</span>
+          <a href="https://orcid.org/0000-0001-8921-4248" target="_blank">ORCID</a>
+        </div>
+
+        <div class="side-item">
+          <span class="icon gh">GH</span>
+          <a href="https://github.com/Iam-MFawad" target="_blank">GitHub</a>
+        </div>
+
+        <div class="side-item">
+          <span class="icon in">in</span>
+          <a href="https://linkedin.com/in/muhammad-fawad-79a3655b" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section id="home">
+        <h1>Hello! I’m Muhammad Fawad</h1>
+
+        <p class="lead">
+          With a Ph.D. in Mathematical Statistics, my research focuses on health data science, combining statistical modeling, machine learning, and epidemiology to address real-world health challenges, from disease prediction to public health strategy.
+        </p>
+
+        <p class="lead">
+          I am currently a Postdoctoral Research Fellow at Tampere University, Finland. Previously, I worked at Zhejiang University and Zhengzhou University, China, where I contributed to research in healthcare data science, infectious disease epidemiology, and predictive modeling using UK Biobank and hospital clinical data.
+        </p>
+
+        <h2>Research Interests</h2>
+        <ul>
+          <li>Health data science and healthcare analytics</li>
+          <li>Machine learning for disease prediction and early detection</li>
+          <li>Cardiometabolic disease and cancer epidemiology</li>
+          <li>Infectious disease epidemiology and public health strategy</li>
+          <li>Statistical modeling of complex and large-scale biomedical data</li>
+        </ul>
+      </section>
+
+      <section id="publications">
+        <h2>Publications</h2>
+        <p class="section-note">Click “Search” to open a working Google Scholar search for each paper.</p>
+
+        <ol class="pub-list">
+          <li>
+            Abbas, A., <strong>Fawad, M.</strong>, Jahanger, N., Jannat, Z., Haq, E. U., Yaqub, L. (2025).
+            Drinking Water Quality and Disease Surveillance Trends in District Poonch Azad Jammu Kashmir.
+            Manuscript under review.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Drinking+Water+Quality+and+Disease+Surveillance+Trends+in+District+Poonch+Azad+Jammu+Kashmir">Search</a>
+          </li>
+
+          <li>
+            Mohammadi, V., Ahmadi, F., <strong>Fawad, M.</strong> (2025).
+            Experience of Phantom Vibration/Ringing Syndrome among Medical Sciences Students: The Role of Anxiety and Poor Sleep Quality with Mediation Analysis.
+            Manuscript under review.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Experience+of+Phantom+Vibration+Ringing+Syndrome+among+Medical+Sciences+Students+The+Role+of+Anxiety+and+Poor+Sleep+Quality+with+Mediation+Analysis">Search</a>
+          </li>
+
+          <li>
+            <strong>Fawad, M.</strong>, Miao, L., Ren, J., El-Fatyany, A., Ullah, S., Khan, M., Xu, X. (2025).
+            Using Multi-Layer Perceptron Neural Network Model to Identify Significant Risk Factors for Lung Cancer: Towards Improved Early Detection Strategies.
+            Under review at Scientific Reports.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Using+Multi-Layer+Perceptron+Neural+Network+Model+to+Identify+Significant+Risk+Factors+for+Lung+Cancer+Towards+Improved+Early+Detection+Strategies">Search</a>
+          </li>
+
+          <li>
+            Ahmadi, F., Javadi, V., Masumi, Z., <strong>Fawad, M.</strong>, Xu, X. (2025).
+            Patterns and Determinants of Social Health among Medical Sciences Students.
+            Under review in BMC Medical Education.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Patterns+and+Determinants+of+Social+Health+among+Medical+Sciences+Students">Search</a>
+          </li>
+
+          <li>
+            Yang, B., Xu, Y., Xu, Q., <strong>Fawad, M.</strong>, Jiao, S., Ma, J., Wen, R., Zhang, W., Liu, J., Fan, B., Liu, H., Xi, Y., Guan, X., Wang, X. (2025).
+            Tailored Minimum Examined Lymph Node Threshold in Colon Cancer: Evidence from a Large, Multi-database Analysis.
+            Under review in International Journal of Colorectal Disease.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Tailored+Minimum+Examined+Lymph+Node+Threshold+in+Colon+Cancer+Evidence+from+a+Large+Multi-database+Analysis">Search</a>
+          </li>
+
+          <li>
+            Chutarong, W., Thammalikhit, R., Sawangwong, A., Guo, Y., <strong>Fawad, M.</strong>, Lonapalawong, S., Zhang, W. (2025).
+            The impact of digital channels on public health services to enhance city resilience during the public health emergency response in Thailand (2020–2023).
+            <i>BMC Health Services Research</i>, 25, 1249.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=The+impact+of+digital+channels+on+public+health+services+to+enhance+city+resilience+during+the+public+health+emergency+response+in+Thailand+2020+2023">Search</a>
+          </li>
+
+          <li>
+            Faghihzadeh, E., Eghtesad, A., <strong>Fawad, M.</strong>, Xu, X. (2025).
+            Exploring Connections Between Mental Health, Burnout, and Academic Factors Among Medical Students at an Iranian University: Cross-Sectional Questionnaire Study.
+            <i>JMIR Medical Education</i>, 11, e58008.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Exploring+Connections+Between+Mental+Health+Burnout+and+Academic+Factors+Among+Medical+Students+at+an+Iranian+University+Cross-Sectional+Questionnaire+Study">Search</a>
+          </li>
+
+          <li>
+            Naeem, S., Wang, F., Mubarak, R., Shen, H., Li, X., Mommers, I., Hussain, S. R., Malik, S. S., Yu, C., Hak, E., Xu, X., <strong>Fawad, M. ✉</strong>, Mubarik, S. (2025).
+            Mapping the Global distribution, risk factors, and temporal trends of COPD incidence and mortality (1990–2021): ecological analysis.
+            <i>BMC Medicine</i>, 23, 210.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Mapping+the+Global+distribution+risk+factors+and+temporal+trends+of+COPD+incidence+and+mortality+1990+2021+ecological+analysis">Search</a>
+          </li>
+
+          <li>
+            Zhang, Y., Ding, W., Wu, T., Wu, S., Wang, H., <strong>Fawad, M.</strong>, Adane, A., Dai, X., Zhu, X., Xu, X. (2025).
+            Pregnancy with multiple high-risk factors: a systematic review and meta-analysis.
+            <i>Journal of Global Health</i>, 15, 04027.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Pregnancy+with+multiple+high-risk+factors+a+systematic+review+and+meta-analysis">Search</a>
+          </li>
+
+          <li>
+            <strong>Fawad, M.</strong>, Ullah, S., Xu, X. (2024).
+            Climate-Responsive Telemedicine: Innovative Strategy for Enhancing Healthcare in the Face of Climate Change.
+            <i>Journal of Global Health</i>, 14, 03043.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Climate-Responsive+Telemedicine+Innovative+Strategy+for+Enhancing+Healthcare+in+the+Face+of+Climate+Change">Search</a>
+          </li>
+
+          <li>
+            Ahmad, I., Salman, M., Almanjahie, I. M., Alshahrani, F., Khan, M. S. U. R., <strong>Fawad, M.</strong>, Haq, E. U. (2024).
+            Regional frequency analysis of extreme wind in Pakistan using robust estimation methods.
+            <i>Scientific Reports</i>, 14, 25882.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Regional+frequency+analysis+of+extreme+wind+in+Pakistan+using+robust+estimation+methods">Search</a>
+          </li>
+
+          <li>
+            Zhang, Y., Tao, Q., Cheng, Y., <strong>Fawad, M.</strong>, Liang, Z., Xu, X. (2024).
+            Gestational diabetes mellitus, body mass index, and cardiometabolic multimorbidity: a prospective cohort study.
+            <i>Annals of Epidemiology</i>, 99, 9–15.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Gestational+diabetes+mellitus+body+mass+index+and+cardiometabolic+multimorbidity+a+prospective+cohort+study">Search</a>
+          </li>
+
+          <li>
+            Yang, B., Podda, M., Zhang, Z., Pan, X., Fan, B., Yang, S., Islam, M. S., <strong>Fawad, M.</strong>, Ma, J., Jiao, S., Guan, X., Xi, Y., Wang, X. (2024).
+            Clinicopathological and genomic characterization of intestinal adenosquamous carcinoma.
+            <i>British Journal of Surgery</i>, 111(10), znae255.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Clinicopathological+and+genomic+characterization+of+intestinal+adenosquamous+carcinoma">Search</a>
+          </li>
+
+          <li>
+            Jin, Y., Xu, Z., Zhang, Y., Zhang, Y., Wang, D., Cheng, Y., Zhou, Y., <strong>Fawad, M.</strong>, Xu, X. (2023).
+            Serum/plasma biomarkers and the progression of cardiometabolic multimorbidity: a systematic review and meta-analysis.
+            <i>Frontiers in Public Health</i>, 11, 1280185.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Serum+plasma+biomarkers+and+the+progression+of+cardiometabolic+multimorbidity+a+systematic+review+and+meta-analysis">Search</a>
+          </li>
+
+          <li>
+            Zhang, Y., Zhou, Y., Cheng, Y., Carrillo-Larco, R. M., <strong>Fawad, M.</strong>, Chen, S., Xu, X. (2023).
+            Association of birth and childhood weight with risk of chronic diseases and multimorbidity in adulthood.
+            <i>Communications Medicine</i>, 3(1), 105.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Association+of+birth+and+childhood+weight+with+risk+of+chronic+diseases+and+multimorbidity+in+adulthood">Search</a>
+          </li>
+
+          <li>
+            Mubarik, S., Wang, F., Nadeem, A. A., <strong>Fawad, M.</strong>, Yu, C. (2023).
+            Breast cancer epidemiology and sociodemographic differences in BRICS-plus countries from 1990 to 2019: An age period cohort analysis.
+            <i>SSM - Population Health</i>, 22, 101418.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Breast+cancer+epidemiology+and+sociodemographic+differences+in+BRICS-plus+countries+from+1990+to+2019+An+age+period+cohort+analysis">Search</a>
+          </li>
+
+          <li>
+            Ding, H., <strong>Fawad, M. ✉</strong>, Xu, X., Hu, B. (2022).
+            A Framework for Identification and Classification of liver diseases based on Machine Learning Algorithms.
+            <i>Frontiers in Oncology</i>, 12, 1048348.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=A+Framework+for+Identification+and+Classification+of+liver+diseases+based+on+Machine+Learning+Algorithms">Search</a>
+          </li>
+
+          <li>
+            Khan, S., Zhang, D.-Y., Zhang, J.-Y., Hayat, M. K., Ren, J., Nasir, S., <strong>Fawad, M.</strong>, Bai, Q. (2022).
+            The Key Role of microRNAs in Initiation and Progression of Hepatocellular Carcinoma.
+            <i>Frontiers in Oncology</i>, 12, 950374.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=The+Key+Role+of+microRNAs+in+Initiation+and+Progression+of+Hepatocellular+Carcinoma">Search</a>
+          </li>
+
+          <li>
+            <strong>Fawad, M.</strong>, Cassalho, F., Ren, J., Chen, L., Yan, T. (2022).
+            State-of-the-Art Statistical Approaches for Estimating Flood Events.
+            <i>Entropy</i>, 24(7), 898.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=State-of-the-Art+Statistical+Approaches+for+Estimating+Flood+Events">Search</a>
+          </li>
+
+          <li>
+            Gul, S., Ren, J., Xiong, N., <strong>Fawad, M.</strong> (2022).
+            An effective evapotranspiration estimation scheme based on statistical indicators for sustainable environments in humid and semi-arid area of Khyber Pakhtunkhwa, Pakistan.
+            <i>Water Supply</i>, 22(3), 2493–2517.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=An+effective+evapotranspiration+estimation+scheme+based+on+statistical+indicators+for+sustainable+environments+in+humid+and+semi-arid+area+of+Khyber+Pakhtunkhwa+Pakistan">Search</a>
+          </li>
+
+          <li>
+            Mubarik, S., Yu, Y., Wang, F., Malik, S. S., Liu, X., <strong>Fawad, M.</strong>, Shi, F., Yu, C. (2022).
+            Epidemiological and sociodemographic transitions of female breast cancer incidence, death, case fatality and DALYs in 21 world regions and globally, from 1990 to 2017: An Age-Period-Cohort Analysis.
+            <i>Journal of Advanced Research</i>, 37, 185–196.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Epidemiological+and+sociodemographic+transitions+of+female+breast+cancer+incidence+death+case+fatality+and+DALYs+in+21+world+regions+and+globally+from+1990+to+2017+An+Age-Period-Cohort+Analysis">Search</a>
+          </li>
+
+          <li>
+            <strong>Fawad, M.</strong>, Mubarik, S., Malik, S. S., Hao, Y., Yu, C., Ren, J. (2021).
+            Statistical analysis of COVID-19 infection caused by environmental factors: Evidence from Pakistan.
+            <i>Life Sciences</i>, 269, 119093.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Statistical+analysis+of+COVID-19+infection+caused+by+environmental+factors+Evidence+from+Pakistan">Search</a>
+          </li>
+
+          <li>
+            <strong>Fawad, M.</strong>, Mubarik, S., Malik, S. S., Hao, Y., Yu, C., Ren, J. (2020).
+            Trend Dynamics of Severe Acute Respiratory Syndrome Coronavirus 2 (SARS-CoV-2) Transmission in 16 Cities of Hubei Province, China.
+            <i>Clinical Epidemiology</i>, 12, 699–709.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Trend+Dynamics+of+Severe+Acute+Respiratory+Syndrome+Coronavirus+2+SARS-CoV-2+Transmission+in+16+Cities+of+Hubei+Province+China">Search</a>
+          </li>
+
+          <li>
+            Mubarik, S., Wang, F., <strong>Fawad, M.</strong>, Wang, Y., Ahmad, I., Yu, C. (2020).
+            Trends and Projections in Breast Cancer Mortality among four Asian countries (1990–2017): Evidence from five Stochastic Mortality Models.
+            <i>Scientific Reports</i>, 10, 5480.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Trends+and+Projections+in+Breast+Cancer+Mortality+among+four+Asian+countries+1990+2017+Evidence+from+five+Stochastic+Mortality+Models">Search</a>
+          </li>
+
+          <li>
+            Mubarik, S., Malik, S. S., Wang, Z., Li, C., <strong>Fawad, M.</strong>, Yu, C. (2019).
+            Recent insights into breast cancer incidence trends among four Asian countries using age-period-cohort model.
+            <i>Cancer Management and Research</i>, 11, 8145–8155.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Recent+insights+into+breast+cancer+incidence+trends+among+four+Asian+countries+using+age-period-cohort+model">Search</a>
+          </li>
+
+          <li>
+            <strong>Fawad, M.</strong>, Yan, T., Chen, L., Huang, K. (2019).
+            Multiparameter Probability Distributions for At-Site Frequency Analysis of Annual Maximum Wind Speed with L-Moments for Parameter Estimation.
+            <i>Energy</i>, 181, 724–737.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Multiparameter+Probability+Distributions+for+At-Site+Frequency+Analysis+of+Annual+Maximum+Wind+Speed+with+L-Moments+for+Parameter+Estimation">Search</a>
+          </li>
+
+          <li>
+            <strong>Fawad, M.</strong>, Ahmad, I., Ali Nadeem, F., Yan, T., Abbas, A. (2018).
+            Estimation of wind speed using regional frequency analysis based on linear-moments.
+            <i>International Journal of Climatology</i>, 38(12), 4431–4444.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Estimation+of+wind+speed+using+regional+frequency+analysis+based+on+linear-moments">Search</a>
+          </li>
+
+          <li>
+            Ahmad, I., Abbas, A., <strong>Fawad, M.</strong>, Saghir, A. (2017).
+            Regional Frequency Analysis of Annual Total Rainfall in Pakistan Using L-Moments.
+            <i>NUST Journal of Engineering Sciences</i>, 10(1), 19–29.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Regional+Frequency+Analysis+of+Annual+Total+Rainfall+in+Pakistan+Using+L-Moments">Search</a>
+          </li>
+
+          <li>
+            Ahmad, I., Bashir, Y., <strong>Fawad, M.</strong>, Saghir, A. (2017).
+            Regional Frequency Analysis of Low Flows Using L-Moments for Indus Basin in Pakistan.
+            <i>Pakistan Journal of Science</i>, 69(1), 75–84.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Regional+Frequency+Analysis+of+Low+Flows+Using+L-Moments+for+Indus+Basin+in+Pakistan">Search</a>
+          </li>
+
+          <li>
+            Ahmad, I., <strong>Fawad, M.</strong>, Abbas, A., Saghir, A. (2016).
+            Probability Modeling of Low Flows at Different sites of Indus Basin in Pakistan using L-Moments and TL-Moments.
+            <i>Pakistan Journal of Science</i>, 68(1), 80–92.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Probability+Modeling+of+Low+Flows+at+Different+sites+of+Indus+Basin+in+Pakistan+using+L-Moments+and+TL-Moments">Search</a>
+          </li>
+
+          <li>
+            Ahmad, I., <strong>Fawad, M.</strong>, Akbar, M., Abbas, A., Zafar, H. (2016).
+            Regional Frequency Analysis of Annual Peak Flows in Pakistan Using Linear Combination of Order Statistics.
+            <i>Polish Journal of Environmental Studies</i>, 25(6), 2255–2264.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Regional+Frequency+Analysis+of+Annual+Peak+Flows+in+Pakistan+Using+Linear+Combination+of+Order+Statistics">Search</a>
+          </li>
+
+          <li>
+            Ahmad, I., Abbas, A., Saghir, A., <strong>Fawad, M.</strong> (2016).
+            Finding Probability Distributions for Annual Daily Maximum Rainfall in Pakistan Using Linear Moments and Variants.
+            <i>Polish Journal of Environmental Studies</i>, 25(3), 925–937.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=Finding+Probability+Distributions+for+Annual+Daily+Maximum+Rainfall+in+Pakistan+Using+Linear+Moments+and+Variants">Search</a>
+          </li>
+
+          <li>
+            Ahmad, I., <strong>Fawad, M.</strong>, Mahmood, I. (2015).
+            At-Site Flood Frequency Analysis of Annual Maximum Stream Flows in Pakistan Using Robust Estimation Methods.
+            <i>Polish Journal of Environmental Studies</i>, 24(6), 2345–2353.
+            <a class="top-link" target="_blank" href="https://scholar.google.com/scholar?q=At-Site+Flood+Frequency+Analysis+of+Annual+Maximum+Stream+Flows+in+Pakistan+Using+Robust+Estimation+Methods">Search</a>
+          </li>
+        </ol>
+      </section>
+
+      <section id="teaching">
+        <h2>Teaching</h2>
+
+        <div class="card">
+          <h3>Visiting Lecturer</h3>
+          <p class="muted">Department of Environmental Science, International Islamic University, Islamabad, Pakistan | February 2016 – June 2016</p>
+          <ul>
+            <li>Delivered lectures on Statistics to B.S. students.</li>
+            <li>Designed quizzes and exams and assessed student performance.</li>
+            <li>Provided timely feedback to strengthen statistical understanding and analytical skills.</li>
+            <li>Worked with faculty to align course content with departmental objectives.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Visiting Lecturer</h3>
+          <p class="muted">Department of Mathematics and Statistics, Arid Agriculture University, Rawalpindi, Pakistan | September 2015 – February 2016</p>
+          <ul>
+            <li>Taught Elements of Statistics and Biometry to M.Sc. Mathematics students.</li>
+            <li>Taught Introduction to Statistics to B.Sc. Hons Agriculture students.</li>
+            <li>Used practical examples and varied teaching strategies for inclusive learning.</li>
+            <li>Helped students understand statistical applications in agriculture and mathematics.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="cv">
+        <h2>CV</h2>
+
+        <h3>Current Position</h3>
+        <div class="card">
+          <p><strong>Postdoctoral Research Fellow</strong><br>
+          Unit of Health Sciences, Faculty of Social Sciences<br>
+          Tampere University, Finland<br>
+          <span class="muted">May 2025 – Present</span></p>
+          <ul>
+            <li>Conducting research using health data with emphasis on biostatistics, data science, health informatics, epidemiology, and biomedical data engineering.</li>
+            <li>Developing and proposing new research projects.</li>
+            <li>Collaborating across the Health Sciences Unit and the wider Faculty of Social Sciences.</li>
+          </ul>
+        </div>
+
+        <h3>Research Experience</h3>
+        <div class="card">
+          <p><strong>Postdoctoral Researcher</strong><br>
+          School of Public Health, Zhejiang University, Hangzhou, China<br>
+          <span class="muted">October 2022 – March 2025</span></p>
+          <ul>
+            <li>Reviewed master’s and Ph.D. research projects and provided scientific feedback.</li>
+            <li>Led an independent machine learning project for early detection of liver disease and lung cancer.</li>
+            <li>Analyzed Life’s Essential 8 and cardiometabolic disease using UK Biobank data.</li>
+            <li>Contributed to research funding obtained from the National Natural Science Foundation of China (NSFC).</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <p><strong>Postdoctoral Researcher</strong><br>
+          Zhengzhou Key Laboratory of Big Data Analysis and Application; School of Mathematics and Statistics, Zhengzhou University, China<br>
+          <span class="muted">July 2019 – August 2022</span></p>
+          <ul>
+            <li>Studied COVID-19 transmission dynamics and environmental drivers during the Wuhan outbreak period.</li>
+            <li>Collaborated on breast cancer studies and treatment-related research.</li>
+            <li>Reviewed Ph.D. papers, supported student development, and contributed to grant applications.</li>
+          </ul>
+        </div>
+
+        <h3>Education</h3>
+        <div class="card">
+          <ul>
+            <li><strong>Ph.D. in Mathematical Statistics</strong>, Central China Normal University, Wuhan, China, 2016–2019</li>
+            <li><strong>M.S./M.Phil in Statistics</strong>, International Islamic University Islamabad, Pakistan, 2012–2015</li>
+            <li><strong>M.Sc. in Statistics</strong>, University of Malakand, Chakdara, Pakistan, 2009–2011</li>
+            <li><strong>B.Sc. in Statistics, Mathematics, Physics</strong>, University of Malakand, Chakdara, Pakistan, 2007–2009</li>
+          </ul>
+        </div>
+
+        <h3>Awards and Distinctions</h3>
+        <div class="card">
+          <ul>
+            <li>Excellent International Student Award, Central China Normal University, 2019</li>
+            <li>Certificate of Honor, China Scholarship Council at Peking University, 2019</li>
+            <li>Academic Diligence Award, Central China Normal University, 2017</li>
+            <li>Chinese Government Scholarship, 2016</li>
+            <li>Laptop Award, Government of Pakistan, 2014</li>
+            <li>Chancellor Medal, University of Malakand, 2012</li>
+            <li>Merit Certificate, University of Malakand, 2012</li>
+            <li>Certificate of Appreciation, University of Malakand, 2011</li>
+          </ul>
+        </div>
+
+        <h3>Professional Service</h3>
+        <div class="card">
+          <ul>
+            <li>Editorial Board Member, <i>Scientific Reports</i> (April 2024 – Present)</li>
+            <li>Academic Editor, <i>PLOS ONE</i> (June 2024 – April 2025)</li>
+            <li>Reviewer for journals across health, environmental science, AI, engineering, and statistics.</li>
+          </ul>
+        </div>
+
+        <h3>Skills</h3>
+        <div class="card">
+          <div class="two-col">
+            <div>
+              <p><strong>Software & Programming</strong></p>
+              <ul>
+                <li>Python</li>
+                <li>R</li>
+                <li>SAS</li>
+                <li>SPSS</li>
+                <li>Minitab</li>
+                <li>LaTeX</li>
+                <li>Microsoft Office</li>
+              </ul>
+            </div>
+            <div>
+              <p><strong>Languages</strong></p>
+              <ul>
+                <li>English (Fluent)</li>
+                <li>Chinese (Basic)</li>
+                <li>Urdu (Native)</li>
+                <li>Pashto (Native)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const btn = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark');
+      btn.textContent = '☀️ Light';
+    }
+
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      btn.textContent = isDark ? '☀️ Light' : '🌙 Dark';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  </script>
 </body>
 </html>
