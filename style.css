@@ -390,5 +390,14 @@ body.dark{--bg:#0e1923;--surface:#152330;--surface-2:#1b2e3d;--text:#edf3f7;--mu
 .research-interests{padding-left:22px;color:var(--text)}
 .research-interests li{margin:10px 0;padding-left:3px}
 .research-interests li::marker{color:var(--primary)}
-.visitor-map{max-width:440px;margin:36px auto 20px;text-align:center;overflow:hidden}
+.visitor-map{width:100%;max-width:640px;margin:40px auto 24px;text-align:center;overflow:hidden}
 .visitor-map img,.visitor-map iframe{max-width:100%}
+
+/* Navigation without the monogram; responsive visitor map. */
+.topbar-inner>.nav{margin-left:0;margin-right:auto}
+.hero>.lead{margin:0}
+.visitor-map img{display:block;width:100%;height:auto;margin:auto}
+.visitor-map iframe{width:100%;border:0}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:760px){.topbar-inner{flex-wrap:nowrap}.topbar-inner>.nav{order:0;width:auto;flex:1;justify-content:flex-start;gap:14px}.topbar-inner>.toggle-btn{order:1;flex-shrink:0}.visitor-map{margin-top:28px}}
+@media(max-width:420px){.topbar-inner{padding:12px;gap:8px}.topbar-inner>.nav{gap:10px}.toggle-btn{padding:8px;font-size:11px}}
