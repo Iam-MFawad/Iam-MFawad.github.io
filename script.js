@@ -1,18 +1,20 @@
 (function () {
-  const btn = document.getElementById("themeToggle");
-  const savedTheme = localStorage.getItem("theme");
-
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark");
-    if (btn) btn.textContent = "☀️ Light";
+  const button = document.getElementById('themeToggle');
+  let saved;
+  try { saved = localStorage.getItem('theme'); } catch (_) {}
+  const dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  function apply(value) {
+    document.body.classList.toggle('dark', value);
+    if (button) {
+      button.textContent = value ? 'Light mode' : 'Dark mode';
+      button.setAttribute('aria-pressed', String(value));
+      button.setAttribute('aria-label', value ? 'Switch to light mode' : 'Switch to dark mode');
+    }
   }
-
-  if (btn) {
-    btn.addEventListener("click", function () {
-      document.body.classList.toggle("dark");
-      const isDark = document.body.classList.contains("dark");
-      btn.textContent = isDark ? "☀️ Light" : "🌙 Dark";
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    });
-  }
+  apply(dark);
+  if (button) button.addEventListener('click', function () {
+    const value = !document.body.classList.contains('dark');
+    apply(value);
+    try { localStorage.setItem('theme', value ? 'dark' : 'light'); } catch (_) {}
+  });
 })();
