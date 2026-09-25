@@ -401,3 +401,6 @@ body.dark{--bg:#0e1923;--surface:#152330;--surface-2:#1b2e3d;--text:#edf3f7;--mu
 .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(max-width:760px){.topbar-inner{flex-wrap:nowrap}.topbar-inner>.nav{order:0;width:auto;flex:1;justify-content:flex-start;gap:14px}.topbar-inner>.toggle-btn{order:1;flex-shrink:0}.visitor-map{margin-top:28px}}
 @media(max-width:420px){.topbar-inner{padding:12px;gap:8px}.topbar-inner>.nav{gap:10px}.toggle-btn{padding:8px;font-size:11px}}
+
+/* Fill the portrait frame without white side bands. */
+.avatar{object-fit:cover;object-position:center 30%;background:transparent}
