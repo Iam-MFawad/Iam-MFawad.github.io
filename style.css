@@ -447,3 +447,23 @@ body.dark .download{color:#fff}
 @media(max-width:1100px){.content .research-hero{grid-template-columns:1fr}.science-visual{width:100%;max-width:390px;justify-self:center}}
 @media(max-width:760px){.content .research-hero{padding:24px 20px;gap:16px}.science-stage{height:300px}.science-sphere{top:77px}.orbit-ring{top:35px}.ring-three{top:50px}.science-tile{width:108px;min-height:91px}.research-hero .lead{font-size:16px}}
 @media(prefers-reduced-motion:reduce){.science-sphere,.orbit-ring,.science-tile{animation:none!important}.science-orbit{transform:none!important;transition:none}.download,.sidebar-card,.contact-card{transition:none}}
+
+/* Compact, unlabeled research symbols with real CSS perspective rotation. */
+.content .research-hero{grid-template-columns:minmax(0,1.2fr) minmax(270px,1fr);gap:28px}
+.science-stage{height:290px;max-width:340px}
+.science-tile{width:76px;min-height:76px;height:76px;padding:12px;perspective:500px}
+.science-tile svg{display:block;width:46px;height:46px}
+.symbol-spin{transform-style:preserve-3d;animation:research-symbol-turn 22s linear infinite}
+.tile-stats .symbol-spin{animation-delay:-4s}.tile-epi .symbol-spin{animation-delay:-8s}.tile-med .symbol-spin{animation-delay:-12s}.tile-cancer .symbol-spin{animation-delay:-16s}
+.tile-ml{left:3px;top:12px}.tile-stats{right:3px;top:12px}
+.tile-epi{left:0;top:auto;bottom:44px}.tile-med{right:0;top:auto;bottom:44px}
+.tile-cancer{left:calc(50% - 38px);bottom:0;--tile-angle:0deg;animation-delay:-3s;color:#237cb4}
+body.dark .tile-cancer{color:#8ed7ff}
+.science-sphere{width:126px;height:126px;left:calc(50% - 63px);top:69px}
+.orbit-ring{width:208px;height:208px;left:calc(50% - 104px);top:28px}
+.ring-three{width:180px;height:180px;left:calc(50% - 90px);top:42px}
+.science-paused .symbol-spin{animation-play-state:paused}
+@keyframes research-symbol-turn{from{transform:rotateY(-15deg) rotateX(8deg)}to{transform:rotateY(345deg) rotateX(8deg)}}
+@media(max-width:1100px){.content .research-hero{grid-template-columns:1fr;gap:20px}.science-visual{max-width:340px}}
+@media(max-width:760px){.content .research-hero{padding:24px 20px}.science-tile{width:70px;height:70px;min-height:70px}.tile-cancer{left:calc(50% - 35px)}.science-tile svg{width:42px;height:42px}}
+@media(prefers-reduced-motion:reduce){.symbol-spin{animation:none!important;transform:none}}
