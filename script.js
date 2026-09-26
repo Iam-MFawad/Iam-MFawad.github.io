@@ -31,7 +31,9 @@
   const off=paused||reduced.matches||document.hidden;
   visual.classList.toggle('science-paused',off);
   button.hidden=reduced.matches;
-  button.textContent=paused?'Play animation':'Pause animation';
+  button.textContent=paused?'▶':'Ⅱ';
+  button.setAttribute('aria-label',paused?'Play animation':'Pause animation');
+  button.title=paused?'Play animation':'Pause animation';
   button.setAttribute('aria-pressed',String(paused));
  }
  button.addEventListener('click',function(){paused=!paused;sync()});
@@ -46,4 +48,22 @@
  });
  stage.addEventListener('pointerleave',function(){stage.style.removeProperty('--scene-x');stage.style.removeProperty('--scene-y')});
  sync();
+})();
+
+(function(){
+ const form=document.getElementById('contact-form');
+ if(!form)return;
+ form.querySelector('button[type="submit"]').disabled=false;
+ form.addEventListener('submit',function(event){
+  event.preventDefault();
+  if(!form.reportValidity())return;
+  const values=new FormData(form);
+  const name=String(values.get('name')).trim();
+  const email=String(values.get('email')).trim();
+  const message=String(values.get('message')).trim();
+  if(!name||!message){document.getElementById('contact-status').textContent='Please enter your name and message.';return;}
+  const body='Name: '+name+'\nReply email: '+email+'\n\n'+message;
+  window.location.href='mailto:fawadkhn42@gmail.com?subject='+encodeURIComponent('Research enquiry from '+name)+'&body='+encodeURIComponent(body);
+  document.getElementById('contact-status').textContent='Your email app should open with a draft. If it does not, use the email address above. Your message stays here until you leave this page.';
+ });
 })();

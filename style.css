@@ -467,3 +467,29 @@ body.dark .tile-cancer{color:#8ed7ff}
 @media(max-width:1100px){.content .research-hero{grid-template-columns:1fr;gap:20px}.science-visual{max-width:340px}}
 @media(max-width:760px){.content .research-hero{padding:24px 20px}.science-tile{width:70px;height:70px;min-height:70px}.tile-cancer{left:calc(50% - 35px)}.science-tile svg{width:42px;height:42px}}
 @media(prefers-reduced-motion:reduce){.symbol-spin{animation:none!important;transform:none}}
+
+/* Clear, front-facing symbols around a population-health illustration. */
+.science-stage{height:340px}
+.symbol-spin{animation:none;transform:none}
+.science-tile{width:68px;height:68px;min-height:68px;--tile-angle:0deg}
+.science-tile svg{width:42px;height:42px}
+.tile-ml{left:0;top:47px;bottom:auto}
+.tile-stats{right:0;top:47px;bottom:auto}
+.tile-shap{left:calc(50% - 34px);top:0;bottom:auto;animation-delay:-5s}
+.tile-epi{left:0;top:auto;bottom:43px}
+.tile-med{right:0;top:auto;bottom:43px}
+.tile-cancer{left:calc(50% - 34px);bottom:0}
+.population-core{position:absolute;width:126px;height:126px;left:calc(50% - 63px);top:107px;color:#267ba5;background:radial-gradient(circle,rgba(112,117,234,.15),transparent 72%);border-radius:50%;filter:drop-shadow(0 0 12px rgba(83,182,233,.2))}
+body.dark .population-core{color:#86d8f1}
+.population-core svg{width:100%;height:100%}
+.orbit-ring{top:66px}.ring-three{top:80px}
+.motion-toggle{width:34px;height:34px;padding:4px;font-size:15px;line-height:1}
+.contact-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+#contact-form label{display:block;font-size:14px;font-weight:600;margin:14px 0}
+#contact-form input,#contact-form textarea{display:block;width:100%;margin-top:8px;padding:12px 14px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--text);font:inherit;box-sizing:border-box}
+#contact-form textarea{resize:vertical;min-height:120px}
+#contact-form .download{border:0;cursor:pointer;font-family:inherit}
+#contact-form .download:disabled{opacity:.6;cursor:not-allowed}
+#contact-form .small-note{font-size:12px;line-height:1.6}
+@media(max-width:540px){.contact-fields{grid-template-columns:1fr;gap:0}}
+@media(prefers-reduced-motion:reduce){.symbol-spin{animation:none!important}}
