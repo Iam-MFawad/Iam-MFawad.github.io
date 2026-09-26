@@ -45,17 +45,37 @@
 (function(){
  const form=document.getElementById('contact-form');
  if(!form)return;
- form.querySelector('button[type="submit"]').disabled=false;
- form.addEventListener('submit',function(event){
+ const button=form.querySelector('button[type="submit"]');
+ const status=document.getElementById('contact-status');
+ let sending=false;
+ form.addEventListener('submit',async function(event){
   event.preventDefault();
-  if(!form.reportValidity())return;
-  const values=new FormData(form);
-  const name=String(values.get('name')).trim();
-  const email=String(values.get('email')).trim();
-  const message=String(values.get('message')).trim();
-  if(!name||!message){document.getElementById('contact-status').textContent='Please enter your name and message.';return;}
-  const body='Name: '+name+'\nReply email: '+email+'\n\n'+message;
-  window.location.href='mailto:fawadkhn42@gmail.com?subject='+encodeURIComponent('Research enquiry from '+name)+'&body='+encodeURIComponent(body);
-  document.getElementById('contact-status').textContent='Your email app should open with a draft. If it does not, use the email address above. Your message stays here until you leave this page.';
+  if(sending||!form.reportValidity())return;
+  const data=new FormData(form);
+  if(!String(data.get('name')||'').trim()||!String(data.get('message')||'').trim()){
+   status.textContent='Please enter your name and message.';
+   return;
+  }
+  sending=true;
+  button.disabled=true;
+  button.textContent='Sending…';
+  form.setAttribute('aria-busy','true');
+  status.textContent='';
+  try{
+   const response=await fetch(form.action,{method:'POST',body:data,headers:{Accept:'application/json'}});
+   if(response.ok){
+    status.textContent='Thank you. Your message has been submitted successfully.';
+    form.reset();
+   }else{
+    status.textContent='Your message could not be submitted. Please try again or email fawadkhn42@gmail.com. Your entries have been kept.';
+   }
+  }catch(error){
+   status.textContent='We could not confirm submission. Check your connection before trying again, or email fawadkhn42@gmail.com. Your entries have been kept.';
+  }finally{
+   sending=false;
+   button.disabled=false;
+   button.textContent='Send Message ↗';
+   form.removeAttribute('aria-busy');
+  }
  });
 })();
