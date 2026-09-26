@@ -404,3 +404,46 @@ body.dark{--bg:#0e1923;--surface:#152330;--surface-2:#1b2e3d;--text:#edf3f7;--mu
 
 /* Fill the portrait frame without white side bands. */
 .avatar{object-fit:cover;object-position:center 30%;background:transparent}
+
+/* Research motion theme: original icons, CSS 3D scene, no external animation libraries. */
+:root{--primary:#5941c5;--primary-dark:#443099;--link:#4f3cb1;--bg:#f3f5fc;--surface:#fff;--surface-2:#edf0fa;--line:#dce1ef;--icon-fill:#f4f5ff}
+body.dark{--bg:#080d1c;--surface:#111b30;--surface-2:#18223b;--text:#edf1ff;--muted:#b3bfd8;--primary:#b1a0ff;--primary-dark:#c5baff;--link:#88e1ef;--line:#2c3856;--icon-fill:#172440}
+body{background-image:radial-gradient(ellipse at 90% 0%,rgba(110,83,225,.09),transparent 48%);background-attachment:fixed}
+body.dark .topbar{background:rgba(8,13,28,.88)}
+.panel,.card,.contact-card{box-shadow:0 10px 36px rgba(37,36,89,.05)}
+body.dark .panel,body.dark .card,body.dark .contact-card{background:linear-gradient(135deg,rgba(26,38,63,.92),rgba(15,24,43,.96))}
+.content .research-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(285px,1fr);align-items:center;gap:20px;padding:30px;border-top:1px solid var(--line);background:radial-gradient(ellipse at 95% 30%,rgba(106,88,225,.12),transparent 65%),var(--surface);overflow:hidden;position:relative;isolation:isolate}
+.research-hero .lead{font-size:17px;line-height:1.85;color:var(--text);position:relative;z-index:1}
+.science-visual{margin:0;min-width:0;text-align:center}
+.science-stage{position:relative;height:316px;max-width:380px;margin:auto;perspective:850px}
+.science-orbit{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--scene-x,-9deg)) rotateY(var(--scene-y,-12deg));transition:transform .6s ease}
+.science-sphere{position:absolute;width:146px;height:146px;top:85px;left:calc(50% - 73px);border-radius:50%;background:radial-gradient(circle at 30% 24%,#d3f8ff 0%,#4dc9eb 17%,#7465e7 43%,#30255d 72%,#0f1835 100%);box-shadow:inset -14px -10px 25px rgba(9,12,38,.6),inset 2px 2px 8px rgba(255,255,255,.6),0 0 55px rgba(104,99,242,.28);transform-style:preserve-3d;animation:science-breathe 10s ease-in-out infinite}
+.science-sphere span{position:absolute;inset:8px;border:1px solid rgba(211,247,255,.36);border-radius:50%;transform:rotateY(45deg)}
+.science-sphere span:nth-child(2){transform:rotateY(90deg)}.science-sphere span:nth-child(3){transform:rotateX(65deg)}.science-sphere span:nth-child(4){transform:rotateX(105deg)}
+.orbit-ring{position:absolute;left:calc(50% - 115px);top:43px;width:230px;height:230px;border:1px solid rgba(99,139,223,.55);border-radius:50%;transform-style:preserve-3d;animation:science-orbit 24s linear infinite}
+.orbit-ring:after{content:"";position:absolute;top:23px;left:28px;width:9px;height:9px;border-radius:50%;background:#49dbf5;box-shadow:0 0 14px #49dbf5}
+.ring-two{animation-duration:32s;animation-direction:reverse;border-color:rgba(174,129,255,.55);--orbit-x:65deg;--orbit-y:35deg}.ring-two:after{background:#bd98ff;box-shadow:0 0 14px #bd98ff}
+.ring-three{width:200px;height:200px;left:calc(50% - 100px);top:58px;--orbit-x:-30deg;--orbit-y:65deg;animation-duration:40s}
+.science-tile{position:absolute;width:112px;min-height:96px;padding:12px 7px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.9);box-shadow:0 9px 24px rgba(44,37,98,.12);backdrop-filter:blur(12px);color:#5841bb;animation:science-float 7s ease-in-out infinite;z-index:2}
+.science-tile svg{width:36px;height:36px;filter:drop-shadow(0 3px 2px rgba(85,65,180,.12))}
+.science-tile span{font-size:10px;line-height:1.35;font-weight:650;color:var(--text)}
+body.dark .science-tile{background:rgba(24,35,62,.9);color:#c0adff;box-shadow:0 12px 25px rgba(0,0,0,.22)}
+.tile-ml{left:0;top:13px;transform:rotate(-5deg);--tile-angle:-5deg}
+.tile-stats{right:0;top:26px;animation-delay:-2s;--tile-angle:5deg}
+.tile-epi{left:3px;bottom:15px;animation-delay:-4s;--tile-angle:-4deg}
+.tile-med{right:0;bottom:4px;animation-delay:-1s;--tile-angle:5deg}
+.motion-toggle{margin:8px 0 0;border:1px solid var(--line);border-radius:20px;background:var(--surface);color:var(--muted);padding:7px 12px;font:inherit;font-size:11px;cursor:pointer;min-height:32px}
+.motion-toggle:hover{border-color:var(--primary);color:var(--text)}
+.science-paused .science-sphere,.science-paused .orbit-ring,.science-paused .science-tile{animation-play-state:paused}
+.science-paused .science-orbit{transform:none}
+.download{background:linear-gradient(120deg,#6150ca,#146b93);color:#fff}
+body.dark .download{color:#fff}
+.download,.sidebar-card,.contact-card{transition:box-shadow .25s ease,border-color .25s ease}
+.download:hover{box-shadow:0 5px 18px rgba(111,87,205,.25)}
+.avatar{box-shadow:0 0 0 3px var(--surface),0 0 0 4px rgba(139,118,227,.55)}
+@keyframes science-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes science-orbit{from{transform:rotateX(var(--orbit-x,68deg)) rotateY(var(--orbit-y,-24deg)) rotateZ(0deg)}to{transform:rotateX(var(--orbit-x,68deg)) rotateY(var(--orbit-y,-24deg)) rotateZ(360deg)}}
+@keyframes science-float{0%,100%{transform:translateY(0) rotate(var(--tile-angle,0deg))}50%{transform:translateY(-8px) rotate(var(--tile-angle,0deg))}}
+@media(max-width:1100px){.content .research-hero{grid-template-columns:1fr}.science-visual{width:100%;max-width:390px;justify-self:center}}
+@media(max-width:760px){.content .research-hero{padding:24px 20px;gap:16px}.science-stage{height:300px}.science-sphere{top:77px}.orbit-ring{top:35px}.ring-three{top:50px}.science-tile{width:108px;min-height:91px}.research-hero .lead{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.science-sphere,.orbit-ring,.science-tile{animation:none!important}.science-orbit{transform:none!important;transition:none}.download,.sidebar-card,.contact-card{transition:none}}
