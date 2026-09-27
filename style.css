@@ -542,37 +542,30 @@ body.dark .population-core{color:#86d8f1}
 @media(max-width:760px){.visitor-map-depth{padding:8px;margin-top:28px}.visitor-map-depth .visitor-map{padding:8px;transform:none}}
 @media(prefers-reduced-motion:reduce){.visitor-map-depth .visitor-map{transform:none;transition:none}}
 
-/* Decorative research motifs remain behind content and never intercept input. */
-body{isolation:isolate}
-.research-backdrop{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;perspective:1000px}
-.backdrop-motif{position:absolute;width:clamp(100px,13vw,190px);color:#435c80;opacity:.32;animation:research-drift 38s ease-in-out infinite alternate;will-change:transform}
-.backdrop-motif svg{display:block;width:100%;height:auto}
-body.dark .backdrop-motif{color:#aaa0ea;opacity:.15}
-.motif-1{left:1.5%;top:12%;animation-delay:-12s}
-.motif-2{right:2%;top:33%;animation-duration:43s;animation-delay:-25s}
-.motif-3{left:3%;top:65%;animation-duration:47s;animation-delay:-9s}
-.motif-4{right:3%;top:76%;animation-duration:41s;animation-delay:-19s}
-@keyframes research-drift{from{transform:translate3d(-8px,12px,-20px) rotateX(-7deg) rotateY(-10deg) rotateZ(-5deg)}to{transform:translate3d(12px,-22px,20px) rotateX(8deg) rotateY(12deg) rotateZ(5deg)}}
-body.background-paused .backdrop-motif{animation-play-state:paused}
-@media(max-width:760px){.backdrop-motif{width:100px;opacity:.07}body.dark .backdrop-motif{opacity:.09}.motif-1,.motif-3{left:-28px}.motif-2,.motif-4{right:-28px}}
-@media(prefers-reduced-motion:reduce){.backdrop-motif{animation:none;will-change:auto}}
-@media print{.research-backdrop{display:none}}
 
-/* Keep drifting symbols clear of foreground card borders. */
-@media(min-width:1281px){
- .home-page .wrap{max-width:min(1280px,calc(100% - 280px))}
- .document-page .wrap{max-width:min(1060px,calc(100% - 280px))}
- .backdrop-motif{width:112px}
- .motif-1,.motif-3{left:14px}
- .motif-2,.motif-4{right:14px}
+/* Midnight and Purple: two dark palettes with readable academic content. */
+body{isolation:isolate;color-scheme:dark}
+body:not(.dark){--bg:#100b23;--surface:#1b1235;--surface-2:#251a45;--text:#f1edff;--muted:#c0b5dc;--primary:#bc9cff;--primary-dark:#d1baff;--link:#79e3ee;--line:#40305f;--icon-fill:#30204b;--shadow:0 14px 40px rgba(6,2,20,.25)}
+body:not(.dark){background-color:var(--bg);background-image:radial-gradient(ellipse at 85% 0%,rgba(128,67,235,.2),transparent 55%),radial-gradient(ellipse at 0% 65%,rgba(37,181,208,.06),transparent 50%)}
+body:not(.dark) .topbar{background:rgba(16,11,35,.92)}
+body:not(.dark) .panel,body:not(.dark) .card,body:not(.dark) .contact-card{background:linear-gradient(135deg,#24183e,#170f2d)}
+body:not(.dark) .science-tile{background:#251a45;color:#c7aaff;border-color:var(--line)}
+body:not(.dark) .population-core{color:#8de3f4}
+body:not(.dark) .tile-cancer{color:#8ed7ff}
+body:not(.dark) .download{background:linear-gradient(120deg,#794bd2,#226f9c);color:white}
+#ambient-network{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+#population-3d{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:240px;height:240px;z-index:2;cursor:grab;touch-action:pan-y;border-radius:50%}
+#population-3d:active{cursor:grabbing}
+#population-3d canvas{display:block;width:100%;height:100%}
+#population-3d:empty{pointer-events:none}
+.webgl-ready .science-orbit{visibility:hidden}
+.section-reveal{transition:opacity .65s ease,transform .65s ease}
+.reveal-pending{opacity:0;transform:translateY(18px)}
+.profile-icon-link,.download,.toggle-btn,.sidebar-card,.contact-card{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+@media(hover:hover) and (pointer:fine){
+ .profile-icon-link:hover,.download:hover,.toggle-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(130,98,231,.2);text-decoration:none}
+ .sidebar-card:hover,.contact-card:hover{border-color:var(--primary);box-shadow:0 10px 32px rgba(117,84,214,.1)}
 }
-@keyframes research-drift{from{transform:translate3d(0,8px,0) rotate(-3deg)}to{transform:translate3d(3px,-8px,0) rotate(3deg)}}
-@media(max-width:1100px){
- .research-backdrop{position:relative;inset:auto;z-index:0;display:flex;justify-content:space-evenly;align-items:center;gap:8px;padding:20px 16px;margin:12px auto;max-width:640px;perspective:none}
- .research-backdrop .backdrop-motif{position:relative;inset:auto;width:clamp(60px,18vw,112px);flex:0 1 112px;opacity:.32}
- body.dark .research-backdrop .backdrop-motif{opacity:.18}
-}
-@media print{.research-backdrop{display:none}}
-
-/* Light-mode contrast only; dark-mode palette remains unchanged. */
-body:not(.dark) .research-backdrop .backdrop-motif{color:#435c80;opacity:.32}
+@media(max-width:760px){#population-3d{width:210px;height:210px}.site-footer{margin-left:20px;margin-right:20px}}
+@media(prefers-reduced-motion:reduce){.section-reveal,.reveal-pending{opacity:1;transform:none;transition:none}.profile-icon-link,.download,.toggle-btn,.sidebar-card,.contact-card{transition:none}.profile-icon-link:hover,.download:hover,.toggle-btn:hover{transform:none}}
+@media print{#ambient-network,#population-3d{display:none}.webgl-ready .science-orbit{visibility:visible}.reveal-pending{opacity:1;transform:none}}
