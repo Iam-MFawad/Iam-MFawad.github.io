@@ -622,3 +622,31 @@ body.background-paused .research-backdrop .sketch-line{animation-play-state:paus
  .research-backdrop .sketch-line{animation:none;stroke-dashoffset:0;opacity:1}
  .research-backdrop .sketch-guide{display:none}
 }
+
+/* Networks build from an empty state, then hold and fade together. */
+.research-backdrop .build-node,.research-backdrop .build-edge{opacity:0;animation-duration:12s;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
+.research-backdrop .build-edge{stroke-dasharray:100;stroke-dashoffset:100}
+.research-backdrop .build-step-0{animation-name:network-build-0}
+@keyframes network-build-0{0%,4%{opacity:0;stroke-dashoffset:100}12%,88%{opacity:1;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0}}
+.research-backdrop .build-step-1{animation-name:network-build-1}
+@keyframes network-build-1{0%,8%{opacity:0;stroke-dashoffset:100}16%,88%{opacity:1;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0}}
+.research-backdrop .build-step-2{animation-name:network-build-2}
+@keyframes network-build-2{0%,12%{opacity:0;stroke-dashoffset:100}20%,88%{opacity:1;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0}}
+.research-backdrop .build-step-3{animation-name:network-build-3}
+@keyframes network-build-3{0%,16%{opacity:0;stroke-dashoffset:100}24%,88%{opacity:1;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0}}
+.research-backdrop .build-step-4{animation-name:network-build-4}
+@keyframes network-build-4{0%,20%{opacity:0;stroke-dashoffset:100}28%,88%{opacity:1;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0}}
+.research-backdrop .build-step-5{animation-name:network-build-5}
+@keyframes network-build-5{0%,24%{opacity:0;stroke-dashoffset:100}32%,88%{opacity:1;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0}}
+.research-backdrop .build-step-6{animation-name:network-build-6}
+@keyframes network-build-6{0%,28%{opacity:0;stroke-dashoffset:100}36%,88%{opacity:1;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0}}
+.research-backdrop .build-step-7{animation-name:network-build-7}
+@keyframes network-build-7{0%,32%{opacity:0;stroke-dashoffset:100}40%,88%{opacity:1;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0}}
+.research-backdrop .build-step-8{animation-name:network-build-8}
+@keyframes network-build-8{0%,36%{opacity:0;stroke-dashoffset:100}44%,88%{opacity:1;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0}}
+.research-backdrop .build-step-9{animation-name:network-build-9}
+@keyframes network-build-9{0%,40%{opacity:0;stroke-dashoffset:100}48%,88%{opacity:1;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0}}
+.research-backdrop .build-step-10{animation-name:network-build-10}
+@keyframes network-build-10{0%,44%{opacity:0;stroke-dashoffset:100}52%,88%{opacity:1;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0}}
+body.background-paused .research-backdrop .build-node,body.background-paused .research-backdrop .build-edge{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.research-backdrop .build-node,.research-backdrop .build-edge{animation:none;opacity:1;stroke-dashoffset:0}}
