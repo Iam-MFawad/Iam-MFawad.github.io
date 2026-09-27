@@ -52,8 +52,8 @@
   event.preventDefault();
   if(sending||!form.reportValidity())return;
   const data=new FormData(form);
-  if(!String(data.get('name')||'').trim()||!String(data.get('message')||'').trim()){
-   status.textContent='Please enter your name and message.';
+  if(!String(data.get('name')||'').trim()||!String(data.get('message')||'').trim()||!String(data.get('subject')||'').trim()){
+   status.textContent='Please enter your name, subject, and message.';
    return;
   }
   sending=true;
