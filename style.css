@@ -444,7 +444,7 @@ body.dark .download{color:#fff}
 @keyframes science-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
 @keyframes science-orbit{from{transform:rotateX(var(--orbit-x,68deg)) rotateY(var(--orbit-y,-24deg)) rotateZ(0deg)}to{transform:rotateX(var(--orbit-x,68deg)) rotateY(var(--orbit-y,-24deg)) rotateZ(360deg)}}
 @keyframes science-float{0%,100%{transform:translateY(0) rotate(var(--tile-angle,0deg))}50%{transform:translateY(-8px) rotate(var(--tile-angle,0deg))}}
-@media(max-width:1100px){.content .research-hero{grid-template-columns:1fr}.science-visual{width:100%;max-width:390px;justify-self:center}}
+@media(max-width:1280px){.content .research-hero{grid-template-columns:1fr}.science-visual{width:100%;max-width:390px;justify-self:center}}
 @media(max-width:760px){.content .research-hero{padding:24px 20px;gap:16px}.science-stage{height:300px}.science-sphere{top:77px}.orbit-ring{top:35px}.ring-three{top:50px}.science-tile{width:108px;min-height:91px}.research-hero .lead{font-size:16px}}
 @media(prefers-reduced-motion:reduce){.science-sphere,.orbit-ring,.science-tile{animation:none!important}.science-orbit{transform:none!important;transition:none}.download,.sidebar-card,.contact-card{transition:none}}
 
@@ -545,7 +545,7 @@ body.dark .population-core{color:#86d8f1}
 /* Decorative research motifs remain behind content and never intercept input. */
 body{isolation:isolate}
 .research-backdrop{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;perspective:1000px}
-.backdrop-motif{position:absolute;width:clamp(100px,13vw,190px);color:#536e92;opacity:.12;animation:research-drift 38s ease-in-out infinite alternate;will-change:transform}
+.backdrop-motif{position:absolute;width:clamp(100px,13vw,190px);color:#435c80;opacity:.32;animation:research-drift 38s ease-in-out infinite alternate;will-change:transform}
 .backdrop-motif svg{display:block;width:100%;height:auto}
 body.dark .backdrop-motif{color:#aaa0ea;opacity:.15}
 .motif-1{left:1.5%;top:12%;animation-delay:-12s}
@@ -559,17 +559,20 @@ body.background-paused .backdrop-motif{animation-play-state:paused}
 @media print{.research-backdrop{display:none}}
 
 /* Keep drifting symbols clear of foreground card borders. */
-@media(min-width:1101px){
- .home-page .wrap{max-width:min(1280px,calc(100% - 200px))}
- .document-page .wrap{max-width:min(1060px,calc(100% - 200px))}
- .backdrop-motif{width:72px}
+@media(min-width:1281px){
+ .home-page .wrap{max-width:min(1280px,calc(100% - 280px))}
+ .document-page .wrap{max-width:min(1060px,calc(100% - 280px))}
+ .backdrop-motif{width:112px}
  .motif-1,.motif-3{left:14px}
  .motif-2,.motif-4{right:14px}
 }
 @keyframes research-drift{from{transform:translate3d(0,8px,0) rotate(-3deg)}to{transform:translate3d(3px,-8px,0) rotate(3deg)}}
 @media(max-width:1100px){
  .research-backdrop{position:relative;inset:auto;z-index:0;display:flex;justify-content:space-evenly;align-items:center;gap:8px;padding:20px 16px;margin:12px auto;max-width:640px;perspective:none}
- .research-backdrop .backdrop-motif{position:relative;inset:auto;width:clamp(48px,15vw,80px);flex:0 1 80px;opacity:.12}
+ .research-backdrop .backdrop-motif{position:relative;inset:auto;width:clamp(60px,18vw,112px);flex:0 1 112px;opacity:.32}
  body.dark .research-backdrop .backdrop-motif{opacity:.18}
 }
 @media print{.research-backdrop{display:none}}
+
+/* Light-mode contrast only; dark-mode palette remains unchanged. */
+body:not(.dark) .research-backdrop .backdrop-motif{color:#435c80;opacity:.32}
