@@ -545,14 +545,14 @@ body.dark .population-core{color:#86d8f1}
 /* Decorative research motifs remain behind content and never intercept input. */
 body{isolation:isolate}
 .research-backdrop{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;perspective:1000px}
-.backdrop-motif{position:absolute;width:clamp(100px,13vw,190px);color:#435c80;opacity:.32;animation:research-drift 38s ease-in-out infinite alternate;will-change:transform}
+.backdrop-motif{position:absolute;width:clamp(100px,13vw,190px);color:#435c80;opacity:.32;animation:research-drift 18s ease-in-out infinite alternate;will-change:transform}
 .backdrop-motif svg{display:block;width:100%;height:auto}
 body.dark .backdrop-motif{color:#aaa0ea;opacity:.15}
 .motif-1{left:1.5%;top:12%;animation-delay:-12s}
-.motif-2{right:2%;top:33%;animation-duration:43s;animation-delay:-25s}
-.motif-3{left:3%;top:65%;animation-duration:47s;animation-delay:-9s}
-.motif-4{right:3%;top:76%;animation-duration:41s;animation-delay:-19s}
-@keyframes research-drift{from{transform:translate3d(-8px,12px,-20px) rotateX(-7deg) rotateY(-10deg) rotateZ(-5deg)}to{transform:translate3d(12px,-22px,20px) rotateX(8deg) rotateY(12deg) rotateZ(5deg)}}
+.motif-2{right:2%;top:33%;animation-duration:22s;animation-delay:-25s}
+.motif-3{left:3%;top:65%;animation-duration:24s;animation-delay:-9s}
+.motif-4{right:3%;top:76%;animation-duration:20s;animation-delay:-19s}
+
 body.background-paused .backdrop-motif{animation-play-state:paused}
 @media(max-width:760px){.backdrop-motif{width:100px;opacity:.07}body.dark .backdrop-motif{opacity:.09}.motif-1,.motif-3{left:-28px}.motif-2,.motif-4{right:-28px}}
 @media(prefers-reduced-motion:reduce){.backdrop-motif{animation:none;will-change:auto}}
@@ -566,11 +566,8 @@ body.background-paused .backdrop-motif{animation-play-state:paused}
  .motif-1,.motif-3{left:14px}
  .motif-2,.motif-4{right:14px}
 }
-@keyframes research-drift {
-  from { transform: translateY(4px) rotate(-2deg); }
-  to   { transform: translateY(-4px) rotate(2deg); }
-}
-@media(max-width:1100px){
+
+@media(max-width:1280px){
  .research-backdrop{position:relative;inset:auto;z-index:0;display:flex;justify-content:space-evenly;align-items:center;gap:8px;padding:20px 16px;margin:12px auto;max-width:640px;perspective:none}
  .research-backdrop .backdrop-motif{position:relative;inset:auto;width:clamp(60px,18vw,112px);flex:0 1 112px;opacity:.32}
  body.dark .research-backdrop .backdrop-motif{opacity:.18}
@@ -585,3 +582,26 @@ body{color-scheme:light}body.dark{color-scheme:dark}
 .profile-icon-link,.download,.toggle-btn{transition:transform .2s ease,box-shadow .2s ease}
 @media(hover:hover) and (pointer:fine){.profile-icon-link:hover,.download:hover,.toggle-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(91,97,168,.18)}}
 @media(prefers-reduced-motion:reduce){.profile-icon-link,.download,.toggle-btn{transition:none}.profile-icon-link:hover,.download:hover,.toggle-btn:hover{transform:none}}
+
+/* Reference site's light palette; existing Midnight palette is unchanged. */
+body:not(.dark){
+ --bg:#f3f5fb;--surface:rgba(255,255,255,.75);--surface-2:#e9edf8;
+ --text:#171a2e;--muted:#565d7e;--primary:#7c5cff;--primary-dark:#9d8bff;
+ --link:#335bbb;--line:rgba(23,26,58,.09);--icon-fill:#eef1fa;
+ --shadow:0 24px 60px rgba(35,45,100,.14);
+ background-color:#f3f5fb;
+ background-image:radial-gradient(ellipse at 90% 0%,rgba(124,92,255,.18),transparent 48%),radial-gradient(ellipse at 0% 70%,rgba(0,212,255,.14),transparent 50%);
+}
+body:not(.dark) .topbar{background:rgba(255,255,255,.78)}
+body:not(.dark) .panel,body:not(.dark) .card,body:not(.dark) .contact-card{background:rgba(255,255,255,.75);border-color:rgba(23,26,58,.09)}
+body:not(.dark) .content .research-hero{background:radial-gradient(ellipse at 95% 30%,rgba(0,212,255,.1),transparent 65%),rgba(255,255,255,.75)}
+body:not(.dark) .download{background:linear-gradient(135deg,#7c5cff 0%,#00d4ff 100%);color:#171a2e}
+body:not(.dark) .contact-card input,body:not(.dark) .contact-card textarea{background:#eef1fa;color:#171a2e}
+body:not(.dark) .science-tile{background:rgba(255,255,255,.75);color:#6950c9}
+body:not(.dark) .research-backdrop .backdrop-motif{color:#565d7e;opacity:.32}
+.toggle-btn{width:42px;height:42px;min-width:42px;padding:0;display:inline-flex;align-items:center;justify-content:center;font-size:22px;line-height:1}
+@keyframes research-drift{
+ from{transform:perspective(650px) translate3d(0,8px,0) rotateX(-7deg) rotateY(-14deg) rotateZ(-2deg)}
+ to{transform:perspective(650px) translate3d(2px,-8px,0) rotateX(7deg) rotateY(14deg) rotateZ(2deg)}
+}
+@media(prefers-reduced-motion:reduce){.backdrop-motif{animation:none!important;transform:none}}
