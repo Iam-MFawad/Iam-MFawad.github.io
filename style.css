@@ -605,3 +605,20 @@ body:not(.dark) .research-backdrop .backdrop-motif{color:#565d7e;opacity:.32}
  to{transform:perspective(650px) translate3d(2px,-8px,0) rotateX(7deg) rotateY(14deg) rotateZ(2deg)}
 }
 @media(prefers-reduced-motion:reduce){.backdrop-motif{animation:none!important;transform:none}}
+
+/* Background-only line construction; the main research illustration is unchanged. */
+.research-backdrop .sketch-guide{opacity:.24}
+.research-backdrop .sketch-line{stroke-dasharray:100;stroke-dashoffset:0;animation:research-sketch 8s ease-in-out infinite}
+.research-backdrop .motif-1 .sketch-line{animation-delay:-2s}
+.research-backdrop .motif-3 .sketch-line{animation-delay:-4s}
+.research-backdrop .motif-4 .sketch-line{animation-delay:-6s}
+@keyframes research-sketch{
+ 0%,8%{stroke-dashoffset:100;opacity:.65}
+ 55%,88%{stroke-dashoffset:0;opacity:1}
+ 100%{stroke-dashoffset:0;opacity:0}
+}
+body.background-paused .research-backdrop .sketch-line{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){
+ .research-backdrop .sketch-line{animation:none;stroke-dashoffset:0;opacity:1}
+ .research-backdrop .sketch-guide{display:none}
+}
