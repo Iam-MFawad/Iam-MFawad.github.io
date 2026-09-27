@@ -566,7 +566,10 @@ body.background-paused .backdrop-motif{animation-play-state:paused}
  .motif-1,.motif-3{left:14px}
  .motif-2,.motif-4{right:14px}
 }
-@keyframes research-drift{from{transform:translate3d(0,8px,0) rotate(-3deg)}to{transform:translate3d(3px,-8px,0) rotate(3deg)}}
+@keyframes research-drift {
+  from { transform: translateY(4px) rotate(-2deg); }
+  to   { transform: translateY(-4px) rotate(2deg); }
+}
 @media(max-width:1100px){
  .research-backdrop{position:relative;inset:auto;z-index:0;display:flex;justify-content:space-evenly;align-items:center;gap:8px;padding:20px 16px;margin:12px auto;max-width:640px;perspective:none}
  .research-backdrop .backdrop-motif{position:relative;inset:auto;width:clamp(60px,18vw,112px);flex:0 1 112px;opacity:.32}
