@@ -5,8 +5,15 @@
   const dark=theme!=='light';
   document.body.classList.toggle('dark',dark);
   document.body.dataset.theme=dark?'midnight':'light';
-  if(button){button.textContent=dark?'Light theme':'Midnight theme';button.setAttribute('aria-label','Switch to '+(dark?'Light':'Midnight')+' theme');button.removeAttribute('aria-pressed');}
- }
+  if (button) {
+  button.textContent = dark ? '☀' : '☾';
+  button.setAttribute(
+    'aria-label',
+    dark ? 'Switch to light mode' : 'Switch to dark mode'
+  );
+  button.title = dark ? 'Light mode' : 'Dark mode';
+  button.removeAttribute('aria-pressed');
+}
  apply(saved==='light'?'light':'midnight');
  if(button)button.addEventListener('click',()=>{const theme=document.body.classList.contains('dark')?'light':'midnight';apply(theme);try{localStorage.setItem('portfolio-theme',theme);}catch(_){}});
 })();
