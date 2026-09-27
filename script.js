@@ -79,3 +79,10 @@
   }
  });
 })();
+
+/* Avoid background animation work while this tab is hidden. */
+(function(){
+ function syncBackground(){document.body.classList.toggle('background-paused',document.hidden);}
+ document.addEventListener('visibilitychange',syncBackground);
+ syncBackground();
+})();
