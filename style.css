@@ -536,9 +536,9 @@ body.dark .population-core{color:#86d8f1}
 @media(max-width:380px){.nav a{font-size:11px}.topbar-inner>.nav{gap:7px}.home-page .profile-icons{gap:5px}.profile-icon-link{width:30px;height:34px;flex-basis:30px}}
 
 /* A shallow 3D frame preserves the live visitor map and its links. */
-.visitor-map-depth{perspective:1100px;width:100%;max-width:680px;margin:44px auto 28px;padding:14px}
-.visitor-map-depth .visitor-map{width:100%;max-width:none;margin:0;padding:14px;border:1px solid var(--line);border-radius:20px;background:var(--surface);box-shadow:0 22px 42px rgba(0,0,0,.18),0 5px 0 var(--line);transform:rotateX(5deg) rotateY(-3deg);transition:transform .35s ease,box-shadow .35s ease;transform-origin:center}
-@media(hover:hover) and (pointer:fine){.visitor-map-depth:hover .visitor-map{transform:rotateX(0) rotateY(0);box-shadow:0 14px 30px rgba(0,0,0,.15),0 3px 0 var(--line)}}
+.visitor-map-depth{width:100%;max-width:680px;margin:44px auto 28px;padding:14px}
+.visitor-map-depth .visitor-map{width:100%;max-width:none;margin:0;padding:14px;border:1px solid var(--line);border-radius:20px;background:var(--surface);box-shadow:0 10px 28px rgba(0,0,0,.15)}
+
 @media(max-width:760px){.visitor-map-depth{padding:8px;margin-top:28px}.visitor-map-depth .visitor-map{padding:8px;transform:none}}
 @media(prefers-reduced-motion:reduce){.visitor-map-depth .visitor-map{transform:none;transition:none}}
 
@@ -556,4 +556,20 @@ body.dark .backdrop-motif{color:#aaa0ea;opacity:.15}
 body.background-paused .backdrop-motif{animation-play-state:paused}
 @media(max-width:760px){.backdrop-motif{width:100px;opacity:.07}body.dark .backdrop-motif{opacity:.09}.motif-1,.motif-3{left:-28px}.motif-2,.motif-4{right:-28px}}
 @media(prefers-reduced-motion:reduce){.backdrop-motif{animation:none;will-change:auto}}
+@media print{.research-backdrop{display:none}}
+
+/* Keep drifting symbols clear of foreground card borders. */
+@media(min-width:1101px){
+ .home-page .wrap{max-width:min(1280px,calc(100% - 200px))}
+ .document-page .wrap{max-width:min(1060px,calc(100% - 200px))}
+ .backdrop-motif{width:72px}
+ .motif-1,.motif-3{left:14px}
+ .motif-2,.motif-4{right:14px}
+}
+@keyframes research-drift{from{transform:translate3d(0,8px,0) rotate(-3deg)}to{transform:translate3d(3px,-8px,0) rotate(3deg)}}
+@media(max-width:1100px){
+ .research-backdrop{position:relative;inset:auto;z-index:0;display:flex;justify-content:space-evenly;align-items:center;gap:8px;padding:20px 16px;margin:12px auto;max-width:640px;perspective:none}
+ .research-backdrop .backdrop-motif{position:relative;inset:auto;width:clamp(48px,15vw,80px);flex:0 1 80px;opacity:.12}
+ body.dark .research-backdrop .backdrop-motif{opacity:.18}
+}
 @media print{.research-backdrop{display:none}}
